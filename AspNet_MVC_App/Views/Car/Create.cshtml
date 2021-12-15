@@ -1,0 +1,28 @@
+﻿@model AspNet_MVC_App.Models.Car;
+
+<div>
+    <form method="post" asp-action="Create">
+        <h2 class="mb-3">Create a New Car</h2>
+
+        <div class="form-group row">
+            <label asp-for="Model" class="col-4"></label>
+            <input asp-for="Model" class="form-control col-8">
+        </div>
+        <div class="form-group row">
+            <label asp-for="Color" class="col-4"></label>
+            <input asp-for="Color" class="form-control col-8">
+        </div>
+        <div class="form-group row">
+            <label asp-for="ManufactureDate" class="col-4"></label>
+            <input asp-for="ManufactureDate" class="form-control col-8">
+        </div>
+        <div class="form-group row">
+            <div class="col-6">
+                <input type="submit" class="btn btn-success w-100" value="Create" />
+            </div>
+            <div class="col-6">
+                <a asp-action="Index" class="btn btn-dark w-100">Back</a>
+            </div>
+        </div>
+    </form>
+</div>

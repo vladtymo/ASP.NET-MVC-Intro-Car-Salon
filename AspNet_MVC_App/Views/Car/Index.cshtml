@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AspNet_MVC_App.Models.Car>;
+
+<div>
+    <h2 class="text-center">Car List</h2>
+
+    <div class="mb-2 text-right">
+        <a asp-controller="Car" asp-action="Create" class="btn btn-primary">Create New Car</a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Model</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Manufactured</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Car car in Model)
+                {
+                    <tr>
+                        <td>@car.Model</td>
+                        <td>@car.Color</td>
+                        <td>@car.ManufactureDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>List is empty!</p>
+    }
+</div>
