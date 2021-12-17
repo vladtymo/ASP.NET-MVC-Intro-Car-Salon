@@ -15,6 +15,7 @@
                     <th scope="col">Model</th>
                     <th scope="col">Color</th>
                     <th scope="col">Manufactured</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,13 @@
                         <td>@car.Model</td>
                         <td>@car.Color</td>
                         <td>@car.ManufactureDate</td>
+                        <td>
+                            <div class="btn-group">
+                                <a asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-secondary">Edit</a>
+
+                                <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>
