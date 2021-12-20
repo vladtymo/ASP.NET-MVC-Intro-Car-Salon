@@ -1,6 +1,8 @@
+using AspNet_MVC_App.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +25,9 @@ namespace AspNet_MVC_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SalonDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnStr")));
+
             services.AddControllersWithViews();
         }
 

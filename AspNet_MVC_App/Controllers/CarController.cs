@@ -6,23 +6,23 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.IO;
+using AspNet_MVC_App.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNet_MVC_App.Controllers
 {
     public class CarController : Controller
     {
-        static List<Car> CarList = new List<Car>();
+        private SalonDbContext _context;
 
-        static CarController()
+        public CarController(SalonDbContext context)
         {
-            CarList.Add(new Car() { Id=1, Model = "VW Passat B2", Color = "Red", ManufactureDate = new DateTime(1987, 12, 15) });
-            CarList.Add(new Car() { Id=2, Model = "Nissan Juke", Color = "White", ManufactureDate = new DateTime(2010, 08, 5) });
-            CarList.Add(new Car() { Id=3, Model = "VW Passat B3", Color = "Bordeux", ManufactureDate = new DateTime(1995, 9, 11) });
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View(CarList);
+            return View(_context.Cars);
         }
         public IActionResult Create()
         {
@@ -34,7 +34,9 @@ namespace AspNet_MVC_App.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            CarList.Add(newCar);
+            _context.Cars.Add(newCar);
+            _context.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -42,7 +44,13 @@ namespace AspNet_MVC_App.Controllers
         {
             if (id == null || id <= 0) return NotFound();
 
-            CarList.Remove(CarList.First(c => c.Id == id));
+            var carToRemove = _context.Cars.Find(id);
+
+            if (carToRemove == null) return NotFound();
+
+            _context.Cars.Remove(carToRemove);
+            _context.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -50,7 +58,10 @@ namespace AspNet_MVC_App.Controllers
         {
             if (id == null || id <= 0) return NotFound();
 
-            var car = CarList.First(c => c.Id == id);
+            var car = _context.Cars.Find(id);
+
+            if (car == null) return NotFound();
+
             return View(car);
         }
 
@@ -59,10 +70,12 @@ namespace AspNet_MVC_App.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            var car = CarList.First(c => c.Id == obj.Id);
-            car.Model = obj.Model;
-            car.Color = obj.Color;
-            car.ManufactureDate = obj.ManufactureDate;
+            var carToUpdate = _context.Cars.Find(obj.Id);
+
+            if (carToUpdate == null) return NotFound();
+
+            _context.Cars.Update(carToUpdate);
+            _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
         }

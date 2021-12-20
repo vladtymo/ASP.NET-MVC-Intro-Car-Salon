@@ -11,6 +11,7 @@ namespace AspNet_MVC_App.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage ="You must enter a model")]
+        [MinLength(3, ErrorMessage = "Must have at least three symbols")]
         public string Model { get; set; }
         [Required(ErrorMessage = "You must enter a color")]
         public string Color { get; set; }
