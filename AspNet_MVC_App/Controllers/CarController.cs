@@ -70,11 +70,7 @@ namespace AspNet_MVC_App.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            var carToUpdate = _context.Cars.Find(obj.Id);
-
-            if (carToUpdate == null) return NotFound();
-
-            _context.Cars.Update(carToUpdate);
+            _context.Cars.Update(obj);
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));

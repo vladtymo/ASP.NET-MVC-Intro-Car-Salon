@@ -17,5 +17,7 @@ namespace AspNet_MVC_App.Models
         public string Color { get; set; }
         [DisplayName("Manufacture Date")]
         public DateTime ManufactureDate { get; set; }
+        [Range(0, (double.MaxValue))]
+        public decimal? Price { get; set; }
     }
 }

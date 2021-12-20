@@ -4,7 +4,7 @@
     <h2 class="text-center">Car List</h2>
 
     <div class="mb-2 text-right">
-        <a asp-controller="Car" asp-action="Create" class="btn btn-primary">Create New Car</a>
+        <a asp-controller="Car" asp-action="Create" class="btn btn-primary"><i class="fas fa-plus"></i> Create New Car</a>
     </div>
 
     @if (Model.Any())
@@ -27,9 +27,9 @@
                         <td>@car.ManufactureDate</td>
                         <td>
                             <div class="btn-group">
-                                <a asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-secondary">Edit</a>
+                                <a asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</a>
 
-                                <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Delete</a>
+                                <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                             </div>
                         </td>
                     </tr>
