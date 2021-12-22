@@ -1,23 +1,37 @@
-﻿@model AspNet_MVC_App.Models.Car;
-
+﻿@model AspNet_MVC_App.Models.ViewModels.CarVM;
+@{
+    var title = "Create a New Car";
+}
 <div>
     <form method="post" asp-action="Create">
-        <h2 class="mb-3">Create a New Car</h2>
+        @if(Model.Car != null)
+        {
+            // this is update action
+            title = "Update Car";
+        }
+        <h2 class="mb-3">@title</h2>
 
         <div class="form-group row">
-            <label asp-for="Model" class="col-4"></label>
-            <input asp-for="Model" class="form-control col-8">
-            <span asp-validation-for="Model" class="offset-4 text-danger"></span>
+            <label asp-for="Car.Model" class="col-4"></label>
+            <input asp-for="Car.Model" class="form-control col-8">
+            <span asp-validation-for="Car.Model" class="offset-4 text-danger"></span>
         </div>
         <div class="form-group row">
-            <label asp-for="Color" class="col-4"></label>
-            <input asp-for="Color" class="form-control col-8">
-            <span asp-validation-for="Color" class="offset-4 text-danger"></span>
+            <label asp-for="Car.Color" class="col-4"></label>
+            <input asp-for="Car.Color" class="form-control col-8">
+            <span asp-validation-for="Car.Color" class="offset-4 text-danger"></span>
         </div>
         <div class="form-group row">
-            <label asp-for="ManufactureDate" class="col-4"></label>
-            <input asp-for="ManufactureDate" class="form-control col-8">
-            <span asp-validation-for="ManufactureDate" class="offset-4 text-danger"></span>
+            <label asp-for="Car.CategoryId" class="col-4"></label>
+            <select asp-for="Car.CategoryId" asp-items="@Model.Categories" class="form-control col-8">
+                <option selected disabled>--Select Category--</option>
+            </select>
+            <span asp-validation-for="Car.CategoryId" class="offset-4 text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Car.ManufactureDate" class="col-4"></label>
+            <input asp-for="Car.ManufactureDate" class="form-control col-8">
+            <span asp-validation-for="Car.ManufactureDate" class="offset-4 text-danger"></span>
         </div>
         <div class="form-group row">
             <div class="col-6">

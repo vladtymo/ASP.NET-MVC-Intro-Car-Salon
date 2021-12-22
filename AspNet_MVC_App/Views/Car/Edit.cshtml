@@ -16,6 +16,13 @@
             <span asp-validation-for="Color" class="offset-4 text-danger"></span>
         </div>
         <div class="form-group row">
+            <label asp-for="CategoryId" class="col-4"></label>
+            <select asp-for="CategoryId" asp-items="@ViewBag.CategoryList" class="form-control col-8">
+                <option selected disabled>--Select Category--</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="offset-4 text-danger"></span>
+        </div>
+        <div class="form-group row">
             <label asp-for="ManufactureDate" class="col-4"></label>
             <input asp-for="ManufactureDate" class="form-control col-8">
             <span asp-validation-for="ManufactureDate" class="offset-4 text-danger"></span>

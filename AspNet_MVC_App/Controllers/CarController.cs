@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.IO;
 using AspNet_MVC_App.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using AspNet_MVC_App.Models.ViewModels;
 
 namespace AspNet_MVC_App.Controllers
 {
@@ -22,19 +24,40 @@ namespace AspNet_MVC_App.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Cars);
+            return View(_context.Cars.Include(nameof(Car.Category)));
         }
         public IActionResult Create()
         {
-            return View();
+            //IEnumerable<SelectListItem> categories = _context.Categories.Select(i => new SelectListItem()
+            //{
+            //    Text = i.Name,
+            //    Value = i.Id.ToString()
+            //});
+
+            // ViewData
+            //ViewData["CategoryList"] = categories;
+
+            // ViewBag
+            //ViewBag.CategoryList = categories;
+
+            CarVM viewModel = new CarVM()
+            {
+                Categories = _context.Categories.Select(i => new SelectListItem()
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(Car newCar)
+        public IActionResult Create(CarVM model)
         {
             if (!ModelState.IsValid) return View();
 
-            _context.Cars.Add(newCar);
+            _context.Cars.Add(model.Car);
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
@@ -61,6 +84,13 @@ namespace AspNet_MVC_App.Controllers
             var car = _context.Cars.Find(id);
 
             if (car == null) return NotFound();
+
+            IEnumerable<SelectListItem> categories = _context.Categories.Select(i => new SelectListItem()
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
+            ViewBag.CategoryList = categories;
 
             return View(car);
         }

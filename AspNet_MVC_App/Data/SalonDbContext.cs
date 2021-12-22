@@ -31,5 +31,6 @@ namespace AspNet_MVC_App.Data
         }
 
         public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
     }
 }

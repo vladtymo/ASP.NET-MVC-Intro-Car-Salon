@@ -14,6 +14,7 @@
                 <tr>
                     <th scope="col">Model</th>
                     <th scope="col">Color</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Manufactured</th>
                     <th></th>
                 </tr>
@@ -21,18 +22,19 @@
             <tbody>
                 @foreach (Car car in Model)
                 {
-                    <tr>
-                        <td>@car.Model</td>
-                        <td>@car.Color</td>
-                        <td>@car.ManufactureDate</td>
-                        <td>
-                            <div class="btn-group">
-                                <a asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</a>
+                <tr>
+                    <td>@car.Model</td>
+                    <td>@car.Color</td>
+                    <td>@car.Category?.Name</td>
+                    <td>@car.ManufactureDate</td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</a>
 
-                                <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
-                            </div>
-                        </td>
-                    </tr>
+                            <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                        </div>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

@@ -19,5 +19,9 @@ namespace AspNet_MVC_App.Models
         public DateTime ManufactureDate { get; set; }
         [Range(0, (double.MaxValue))]
         public decimal? Price { get; set; }
+
+        [Display(Name = "Category")]
+        public int? CategoryId { get; set; }
+        public virtual Category Category { get; set; }
     }
 }
