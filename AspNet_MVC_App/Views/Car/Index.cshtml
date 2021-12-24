@@ -32,6 +32,7 @@
                             <a asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</a>
 
                             <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                            @*onclick="confirmDelete(@car.Id)"*@
                         </div>
                     </td>
                 </tr>
@@ -44,3 +45,31 @@
         <p>List is empty!</p>
     }
 </div>
+
+@section Scripts {
+    <script>
+        @*function confirmDelete(carId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url: '@Url.Action("Delete", "Car")',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: { id: carId },
+                        cache: false
+                    });
+                }
+            })
+        }*@
+    </script>
+}

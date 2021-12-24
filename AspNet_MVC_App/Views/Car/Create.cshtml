@@ -4,7 +4,7 @@
 }
 <div>
     <form method="post" asp-action="Create">
-        @if(Model.Car != null)
+        @if (Model.Car != null)
         {
             // this is update action
             title = "Update Car";
@@ -13,13 +13,18 @@
 
         <div class="form-group row">
             <label asp-for="Car.Model" class="col-4"></label>
-            <input asp-for="Car.Model" class="form-control col-8">
+            <input id="modelInput" asp-for="Car.Model" class="form-control col-8">
             <span asp-validation-for="Car.Model" class="offset-4 text-danger"></span>
         </div>
         <div class="form-group row">
             <label asp-for="Car.Color" class="col-4"></label>
             <input asp-for="Car.Color" class="form-control col-8">
             <span asp-validation-for="Car.Color" class="offset-4 text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Car.Description" class="col-4"></label>
+            <textarea asp-for="Car.Description" class="form-control col-8 summernote"></textarea>
+            <span asp-validation-for="Car.Description" class="offset-4 text-danger"></span>
         </div>
         <div class="form-group row">
             <label asp-for="Car.CategoryId" class="col-4"></label>
@@ -35,7 +40,7 @@
         </div>
         <div class="form-group row">
             <div class="col-6">
-                <input type="submit" class="btn btn-success w-100" value="Create" />
+                <input type="submit" onclick="validateInputs()" class="btn btn-success w-100" value="Create" />
             </div>
             <div class="col-6">
                 <a asp-action="Index" class="btn btn-dark w-100">Back</a>
@@ -48,4 +53,21 @@
 @section Scripts
 {
     @{ <partial name="_ValidationScriptsPartial.cshtml"/> }
+    <script>
+        function validateInputs() {
+            const modelInput = document.getElementById("modelInput");
+            if (modelInput.value == "") {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'You must enter a valid model!',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        }
+
+        $(document).ready(function () {
+            $('.summernote').summernote();
+        });
+    </script>
 }

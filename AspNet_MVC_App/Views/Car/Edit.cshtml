@@ -16,6 +16,11 @@
             <span asp-validation-for="Color" class="offset-4 text-danger"></span>
         </div>
         <div class="form-group row">
+            <label asp-for="Description" class="col-4"></label>
+            <textarea asp-for="Description" class="form-control col-8 summernote"></textarea>
+            <span asp-validation-for="Description" class="offset-4 text-danger"></span>
+        </div>
+        <div class="form-group row">
             <label asp-for="CategoryId" class="col-4"></label>
             <select asp-for="CategoryId" asp-items="@ViewBag.CategoryList" class="form-control col-8">
                 <option selected disabled>--Select Category--</option>
@@ -44,4 +49,9 @@
 @section Scripts
 {
     @{ <partial name="_ValidationScriptsPartial.cshtml"/> }
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote();
+        });
+    </script>
 }
