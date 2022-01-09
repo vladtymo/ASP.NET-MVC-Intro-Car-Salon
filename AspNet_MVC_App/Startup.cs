@@ -34,6 +34,8 @@ namespace AspNet_MVC_App
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // some changes...
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
