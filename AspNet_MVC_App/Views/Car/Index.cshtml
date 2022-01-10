@@ -12,6 +12,7 @@
         <table class="table">
             <thead class="thead-light">
                 <tr>
+                    <th scope="col">Image</th>
                     <th scope="col">Model</th>
                     <th scope="col">Color</th>
                     <th scope="col">Category</th>
@@ -23,6 +24,16 @@
                 @foreach (Car car in Model)
                 {
                 <tr>
+                    <td>
+                        @if (car.Image != null)
+                        {
+                            <img src="@WebConstants.carImagesPath@car.Image" alt="Car Image" style="width:150px;" />
+                        }
+                        else
+                        {
+                            <span>No image uploaded</span>
+                        }
+                    </td>
                     <td>@car.Model</td>
                     <td>@car.Color</td>
                     <td>@car.Category?.Name</td>

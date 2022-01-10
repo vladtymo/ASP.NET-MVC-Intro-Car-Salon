@@ -3,7 +3,7 @@
     var title = "Create a New Car";
 }
 <div>
-    <form method="post" asp-action="Create">
+    <form method="post" enctype="multipart/form-data" asp-action="Create">
         @if (Model.Car != null)
         {
             // this is update action
@@ -37,6 +37,10 @@
             <label asp-for="Car.ManufactureDate" class="col-4"></label>
             <input asp-for="Car.ManufactureDate" class="form-control col-8">
             <span asp-validation-for="Car.ManufactureDate" class="offset-4 text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Car.Image" class="col-4"></label>
+            <input type="file" name="files" class="form-control col-8">
         </div>
         <div class="form-group row">
             <div class="col-6">
