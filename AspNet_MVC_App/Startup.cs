@@ -28,6 +28,9 @@ namespace AspNet_MVC_App
             services.AddDbContext<SalonDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnStr")));
 
+            services.AddHttpContextAccessor();
+            services.AddSession(); // TO-DO
+
             services.AddControllersWithViews();
         }
 
@@ -50,6 +53,8 @@ namespace AspNet_MVC_App
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

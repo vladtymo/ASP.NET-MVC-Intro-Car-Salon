@@ -8,5 +8,6 @@ namespace AspNet_MVC_App
     public static class WebConstants
     {
         public const string carImagesPath = "/images/cars/";
+        public const string cartKey = "ShoppingProducts";
     }
 }

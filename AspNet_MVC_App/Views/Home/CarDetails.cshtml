@@ -1,5 +1,26 @@
-﻿@model AspNet_MVC_App.Models.Car;
+﻿@model AspNet_MVC_App.Models.ViewModels.CarDetailsVM;
 
 <h1>CarDetails</h1>
-
-<p>@Model.Model @Model.ManufactureDate.ToShortDateString() @Model.Color @Model.Category.Name</p>
+<h2 class="text-center">@Model.Car.Model</h2>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <span> @Model.Car.ManufactureDate.ToShortDateString() @Model.Car.Color @Model.Car.Category.Name</span>
+        <p>@Html.Raw(Model.Car.Description)</p>
+    </div>
+    <div class="col-6">
+        <a asp-action="Index" class="btn btn-dark w-100"><i class="fas fa-arrow-left"></i> Back</a>
+    </div>
+    @if (Model.IsAddedToCart)
+    {
+        <div class="col-6">
+            <a asp-action="RemoveFromCart" asp-route-id="@Model.Car.Id" class="btn btn-danger w-100 text-white"><i class="fas fa-cart-plus"></i> Remove from Cart</a>
+        </div>
+    }
+    else
+    {
+        <div class="col-6">
+            <a asp-action="AddToCart" asp-route-id="@Model.Car.Id" class="btn btn-success w-100 text-white"><i class="fas fa-cart-plus"></i> Add to Cart</a>
+        </div>
+    }
+</div>

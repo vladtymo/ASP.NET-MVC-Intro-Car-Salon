@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using AspNet_MVC_App;
+@using AspNet_MVC_App.Utilities;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,6 +36,16 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Index">Salon</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
+                                @{
+                                    var list = HttpContextAccessor.HttpContext.Session
+                                                    .GetObject<IEnumerable<ShoppingProduct>>(WebConstants.cartKey);
+                                    var count = list != null ? list.Count() : 0;
+                                }
+                                <i class="fas fa-shopping-cart"></i> (@count)
+                            </a>
                         </li>
                     </ul>
                 </div>

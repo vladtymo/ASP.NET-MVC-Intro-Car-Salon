@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using AspNet_MVC_App.Utilities;
 
 namespace AspNet_MVC_App.Controllers
 {
@@ -40,7 +42,41 @@ namespace AspNet_MVC_App.Controllers
 
             _context.Entry(car).Reference(nameof(Car.Category)).Load();
 
-            return View(car);
+            bool isAddedToCart = false;
+            List<ShoppingProduct> products = HttpContext.Session.GetObject<List<ShoppingProduct>>(WebConstants.cartKey);
+            if (products != null)
+            {
+                if (products.FirstOrDefault(i => i.ProductId == id) != null)
+                    isAddedToCart = true;
+            }
+
+            return View(new CarDetailsVM() { Car = car, IsAddedToCart = isAddedToCart });
+        }
+
+        public IActionResult AddToCart(int id)
+        {
+            List<ShoppingProduct> products = HttpContext.Session.GetObject<List<ShoppingProduct>>(WebConstants.cartKey);
+            if (products == null)
+            {
+                products = new List<ShoppingProduct>();
+            }
+
+            products.Add(new ShoppingProduct() { ProductId = id });
+            HttpContext.Session.SetObject(WebConstants.cartKey, products);
+
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult RemoveFromCart(int id)
+        {
+            List<ShoppingProduct> products = HttpContext.Session.GetObject<List<ShoppingProduct>>(WebConstants.cartKey);
+            if (products != null)
+            {
+                products.Remove(products.FirstOrDefault(i => i.ProductId == id));
+            }
+
+            HttpContext.Session.SetObject(WebConstants.cartKey, products);
+            
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()
