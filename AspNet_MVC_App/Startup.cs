@@ -29,7 +29,12 @@ namespace AspNet_MVC_App
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnStr")));
 
             services.AddHttpContextAccessor();
-            services.AddSession(); // TO-DO
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Expiration = TimeSpan.FromDays(2);
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddControllersWithViews();
         }
