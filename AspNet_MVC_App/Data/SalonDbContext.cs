@@ -1,4 +1,5 @@
 ﻿using AspNet_MVC_App.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AspNet_MVC_App.Data
 {
-    public class SalonDbContext : DbContext
+    public class SalonDbContext : IdentityDbContext
     {
         public SalonDbContext(DbContextOptions options) : base(options) 
         {
@@ -32,5 +33,6 @@ namespace AspNet_MVC_App.Data
 
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public new virtual DbSet<User> Users { get; set; }
     }
 }

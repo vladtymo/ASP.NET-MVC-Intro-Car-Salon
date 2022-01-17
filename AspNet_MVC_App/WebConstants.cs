@@ -9,5 +9,8 @@ namespace AspNet_MVC_App
     {
         public const string carImagesPath = "/images/cars/";
         public const string cartKey = "ShoppingProducts";
+
+        public const string adminRole = "Admin";
+        public const string userRole = "User";
     }
 }

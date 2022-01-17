@@ -1,7 +1,9 @@
 using AspNet_MVC_App.Data;
+using AspNet_MVC_App.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,11 +30,16 @@ namespace AspNet_MVC_App
             services.AddDbContext<SalonDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnStr")));
 
+            services.AddIdentity<User, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<SalonDbContext>();
+
             services.AddHttpContextAccessor();
             services.AddSession(options =>
             {
                 options.Cookie.HttpOnly = true;
-                options.Cookie.Expiration = TimeSpan.FromDays(2);
+                //options.Cookie.Expiration = TimeSpan.FromDays(2);
                 options.Cookie.IsEssential = true;
             });
 
@@ -57,12 +64,14 @@ namespace AspNet_MVC_App
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
