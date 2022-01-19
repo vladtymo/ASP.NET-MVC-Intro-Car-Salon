@@ -12,9 +12,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using AspNet_MVC_App.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AspNet_MVC_App.Controllers
 {
+    [Authorize(Roles = WebConstants.adminRole)]
     public class CarController : Controller
     {
         private SalonDbContext _context;

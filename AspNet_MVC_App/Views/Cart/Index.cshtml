@@ -1,0 +1,22 @@
+﻿@model AspNet_MVC_App.Models.ViewModels.CartListVM;
+
+<div class="card text-center">
+    <div class="card-header">
+        Product List to Order
+    </div>
+    <div class="card-body">
+
+        <ul class="list-group mb-2">
+            @foreach (var car in Model.Cars)
+            {
+                <li class="list-group-item">@car.Model @car.Price$</li>
+            }
+        </ul>
+
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a asp-action="Confirm" class="btn btn-primary">Confirm Order</a>
+    </div>
+    <div class="card-footer text-muted">
+        Items: @Model.Cars.Count()
+    </div>
+</div>

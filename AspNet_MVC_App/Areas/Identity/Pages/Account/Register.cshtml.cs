@@ -127,8 +127,9 @@ namespace AspNet_MVC_App.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        if (!User.IsInRole(WebConstants.adminRole))
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        return LocalRedirect(returnUrl); // Page();
                     }
                 }
                 foreach (var error in result.Errors)

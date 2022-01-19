@@ -42,7 +42,9 @@
                 <span asp-validation-for="Input.FullName" class="text-danger"></span>
             </div>
 
-            @if (User.Identity.IsAuthenticated && User.IsInRole(WebConstants.adminRole))
+            @*User.Identity.IsAuthenticated &&*@
+
+            @if (User.IsInRole(WebConstants.adminRole))
             {
                 <div class="form-group">
                     <div class="checkbox">
