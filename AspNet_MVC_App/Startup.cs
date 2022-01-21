@@ -28,7 +28,7 @@ namespace AspNet_MVC_App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SalonDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnStr")));
+                options.UseSqlServer(Configuration.GetConnectionString("SomeeConnStr")));
 
             services.AddIdentity<User, IdentityRole>()
                 .AddDefaultTokenProviders()
