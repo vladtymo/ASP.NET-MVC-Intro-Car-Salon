@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using Mailjet.Client;
+using Mailjet.Client.Resources;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +12,31 @@ namespace AspNet_MVC_App.Utilities
 {
     public class EmailService : IEmailSender
     {
-        public Task SendEmailAsync(string email, string subject, string htmlMessage)
+        private readonly IConfiguration _configuration;
+        public EmailService(IConfiguration configuration)
         {
-            
-            throw new NotImplementedException();
+            _configuration = configuration;
+        }
+        public async Task SendEmailAsync(string email, string subject, string htmlMessage)
+        {
+            MailJetSettings settings = _configuration.GetSection("MailJet").Get<MailJetSettings>();
+
+            MailjetClient client = new MailjetClient(settings.ApiKey, settings.ApiSecret);
+            MailjetRequest request = new MailjetRequest
+            {
+                Resource = Send.Resource,
+            }
+               .Property(Send.FromEmail, "wladnaz@ukr.net")
+               .Property(Send.FromName, "Vlad")
+               .Property(Send.Subject, subject)
+               //.Property(Send.TextPart, )
+               .Property(Send.HtmlPart, htmlMessage)
+               .Property(Send.Recipients, new JArray {
+                    new JObject {
+                        {"Email", email}
+                    }
+               });
+            await client.PostAsync(request);
         }
     }
 }

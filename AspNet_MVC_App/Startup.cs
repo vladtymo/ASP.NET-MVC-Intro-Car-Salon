@@ -1,9 +1,11 @@
 using AspNet_MVC_App.Data;
 using AspNet_MVC_App.Models;
+using AspNet_MVC_App.Utilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +36,8 @@ namespace AspNet_MVC_App
                 .AddDefaultTokenProviders()
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<SalonDbContext>();
+
+            services.AddTransient<IEmailSender, EmailService>();
 
             services.AddHttpContextAccessor();
             services.AddSession(options =>
