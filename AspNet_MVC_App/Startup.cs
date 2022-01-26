@@ -38,6 +38,7 @@ namespace AspNet_MVC_App
                 .AddEntityFrameworkStores<SalonDbContext>();
 
             services.AddTransient<IEmailSender, EmailService>();
+            services.AddScoped<IViewRender, ViewRender>();
 
             services.AddHttpContextAccessor();
             services.AddSession(options =>

@@ -1,0 +1,18 @@
+﻿@model AspNet_MVC_App.Models.OrderSummaryMail
+@{
+    ViewData["Title"] = "OrderSummary";
+    Layout = "~/Views/Shared/_MailLayout.cshtml";
+}
+
+<h1>Order Summary</h1>
+<hr />
+<p>User: <span>@Model.UserName</span></p>
+<ul>
+    @foreach (var item in Model.Cars)
+    {
+        <li class="list-group-item">@item.Model @item.Price$</li>
+    }
+</ul>
+
+<p>Total Price: <span>@Model.TotalPrice</span>$</p>
+
