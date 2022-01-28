@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Salon.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +18,8 @@ namespace AspNet_MVC_App.Controllers
     [Authorize]
     public class CartController : Controller
     {
-        private SalonDbContext _context;
+        //private SalonDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IEmailSender _emailSender;
         private readonly IViewRender _viewRender;
 
@@ -26,9 +28,10 @@ namespace AspNet_MVC_App.Controllers
 
         public CartController(SalonDbContext context, IEmailSender emailSender, IViewRender viewRender)
         {
-            _context = context;
+            //_context = context;
             _emailSender = emailSender;
             _viewRender = viewRender;
+            _unitOfWork = new UnitOfWork(context);
         }
 
         [AllowAnonymous]
@@ -56,7 +59,7 @@ namespace AspNet_MVC_App.Controllers
 
             int[] productIds = products.Select(i => i.ProductId).ToArray();
 
-            return _context.Cars.Where(c => productIds.Contains(c.Id));
+            return _unitOfWork.CarRepository.Get(c => productIds.Contains(c.Id)); //_context.Cars.Where(c => productIds.Contains(c.Id));
         }
 
         public IActionResult Confirm()

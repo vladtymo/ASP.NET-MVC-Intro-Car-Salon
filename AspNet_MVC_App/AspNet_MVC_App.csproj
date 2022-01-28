@@ -25,4 +25,8 @@
     <Folder Include="wwwroot\images\cars\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Salon.Data\Salon.Data.csproj" />
+  </ItemGroup>
+
 </Project>
