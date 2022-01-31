@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Salon.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace AspNet_MVC_App
 
             services.AddTransient<IEmailSender, EmailService>();
             services.AddScoped<IViewRender, ViewRender>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddHttpContextAccessor();
             services.AddSession(options =>

@@ -26,12 +26,12 @@ namespace AspNet_MVC_App.Controllers
         //[BindProperty]
         //private IEnumerable<Car> Cars { get; set; }
 
-        public CartController(SalonDbContext context, IEmailSender emailSender, IViewRender viewRender)
+        public CartController(IUnitOfWork unitOfWork, IEmailSender emailSender, IViewRender viewRender)
         {
             //_context = context;
             _emailSender = emailSender;
             _viewRender = viewRender;
-            _unitOfWork = new UnitOfWork(context);
+            _unitOfWork = unitOfWork;
         }
 
         [AllowAnonymous]
