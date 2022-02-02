@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@if (@TempData["SuccessMessage"] != null)
+{
+    @*<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script type="text/javascript">
+
+            const Toast = Swal.mixin({
+            toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                            didOpen: (toast) =>
+                            {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }})
+
+            Toast.fire({
+            icon: 'success',
+                title: '@TempData["SuccessMessage"]'
+            })
+        </script>*@
+}
+@if (@TempData["ErrorMessage"] != null)
+{
+
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script type="text/javascript">
+            toastr["error"]('@TempData["ErrorMessage"]')
+    </script>*@
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script type="text/javascript">
+
+            const Toast = Swal.mixin({
+            toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                            didOpen: (toast) =>
+                            {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }})
+
+            Toast.fire({
+            icon: 'error',
+                title: '@TempData["ErrorMessage"]'
+            })
+        </script>
+}

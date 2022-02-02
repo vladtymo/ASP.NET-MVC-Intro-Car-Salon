@@ -11,43 +11,43 @@
         }
         <h2 class="mb-3">@title</h2>
 
-        <div class="form-group row">
+        <div class="mb-3 row ">
             <label asp-for="Car.Model" class="col-4"></label>
             <input id="modelInput" asp-for="Car.Model" class="form-control col-8">
             <span asp-validation-for="Car.Model" class="offset-4 text-danger"></span>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label asp-for="Car.Color" class="col-4"></label>
             <input asp-for="Car.Color" class="form-control col-8">
             <span asp-validation-for="Car.Color" class="offset-4 text-danger"></span>
         </div>
-        <div class="form-group row">
+        <div class="mb-3">
             <label asp-for="Car.Description" class="col-4"></label>
-            <textarea asp-for="Car.Description" class="form-control col-8 summernote"></textarea>
+            <textarea asp-for="Car.Description" class="col-8 summernote"></textarea>
             <span asp-validation-for="Car.Description" class="offset-4 text-danger"></span>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label asp-for="Car.CategoryId" class="col-4"></label>
-            <select asp-for="Car.CategoryId" asp-items="@Model.Categories" class="form-control col-8">
+            <select asp-for="Car.CategoryId" asp-items="@Model.Categories" class="form-select col-8">
                 <option selected disabled>--Select Category--</option>
             </select>
             <span asp-validation-for="Car.CategoryId" class="offset-4 text-danger"></span>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label asp-for="Car.ManufactureDate" class="col-4"></label>
             <input asp-for="Car.ManufactureDate" class="form-control col-8">
             <span asp-validation-for="Car.ManufactureDate" class="offset-4 text-danger"></span>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label asp-for="Car.Price" class="col-4"></label>
             <input asp-for="Car.Price" class="form-control col-8">
             <span asp-validation-for="Car.Price" class="offset-4 text-danger"></span>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <label asp-for="Car.Image" class="col-4"></label>
             <input type="file" name="files" class="form-control col-8">
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-6">
                 <input type="submit" onclick="validateInputs()" class="btn btn-success w-100" value="Create" />
             </div>
@@ -76,7 +76,9 @@
         }
 
         $(document).ready(function () {
-            $('.summernote').summernote();
+            $('.summernote').summernote({
+                height: 100
+            });
         });
     </script>
 }

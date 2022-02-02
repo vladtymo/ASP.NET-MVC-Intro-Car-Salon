@@ -88,6 +88,8 @@ namespace AspNet_MVC_App.Controllers
             _context.Cars.Add(model.Car);
             _context.SaveChanges();
 
+            TempData["SuccessMessage"] = "New car was succesfully added!";
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -111,6 +113,8 @@ namespace AspNet_MVC_App.Controllers
 
             _context.Cars.Remove(carToRemove);
             _context.SaveChanges();
+
+            TempData["ErrorMessage"] = "Car was removed!";
 
             return RedirectToAction(nameof(Index));
         }

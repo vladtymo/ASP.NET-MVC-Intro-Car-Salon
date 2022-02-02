@@ -23,30 +23,30 @@
             <tbody>
                 @foreach (Car car in Model)
                 {
-                <tr>
-                    <td>
-                        @if (car.Image != null)
-                        {
-                            <img src="@WebConstants.carImagesPath@car.Image" alt="Car Image" style="width:150px;" />
-                        }
-                        else
-                        {
-                            <span>No image uploaded</span>
-                        }
-                    </td>
-                    <td>@car.Model</td>
-                    <td>@car.Color</td>
-                    <td>@car.Category?.Name</td>
-                    <td>@car.ManufactureDate</td>
-                    <td>
-                        <div class="btn-group">
-                            <a asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</a>
+                    <tr>
+                        <td>
+                            @if (car.Image != null)
+                            {
+                                <img src="@WebConstants.carImagesPath@car.Image" alt="Car Image" style="width:150px;" />
+                            }
+                            else
+                            {
+                                <span>No image uploaded</span>
+                            }
+                        </td>
+                        <td>@car.Model</td>
+                        <td>@car.Color</td>
+                        <td>@car.Category?.Name</td>
+                        <td>@car.ManufactureDate</td>
+                        <td>
+                            <div class="btn-group">
+                                <a asp-controller="Car" asp-action="Edit" asp-route-id="@car.Id" class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</a>
 
-                            <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
-                            @*onclick="confirmDelete(@car.Id)"*@
-                        </div>
-                    </td>
-                </tr>
+                                <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                @*onclick="confirmDelete(@car.Id)"*@
+                            </div>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -58,6 +58,7 @@
 </div>
 
 @section Scripts {
+
     <script>
         @*function confirmDelete(carId) {
             Swal.fire({
