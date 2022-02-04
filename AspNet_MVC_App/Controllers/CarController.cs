@@ -13,6 +13,7 @@ using AspNet_MVC_App.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using AspNet_MVC_App.Utilities;
 
 namespace AspNet_MVC_App.Controllers
 {
@@ -88,7 +89,11 @@ namespace AspNet_MVC_App.Controllers
             _context.Cars.Add(model.Car);
             _context.SaveChanges();
 
-            TempData["SuccessMessage"] = "New car was succesfully added!";
+            TempData[WebConstants.alertData] = JsonSerializer.Serialize(new AlertData()
+            {
+                Type = "success",
+                Text = "Car was successfully created!"
+            });
 
             return RedirectToAction(nameof(Index));
         }
@@ -114,7 +119,11 @@ namespace AspNet_MVC_App.Controllers
             _context.Cars.Remove(carToRemove);
             _context.SaveChanges();
 
-            TempData["ErrorMessage"] = "Car was removed!";
+            TempData[WebConstants.alertData] = JsonSerializer.Serialize(new AlertData()
+            {
+                Type = "success",
+                Text = "Car was removed!"
+            });
 
             return RedirectToAction(nameof(Index));
         }

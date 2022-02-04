@@ -15,6 +15,9 @@
     @*<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">*@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" crossorigin="anonymous" />
+
+    <link href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -43,16 +46,16 @@
                         @if (User.IsInRole(WebConstants.adminRole))
                         {
                             @*<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li> <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Index">Cars</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categories</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li> <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register New User</a></li>
-                                </ul>
-                            </li>*@
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Dropdown
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li> <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Index">Cars</a></li>
+                                        <li><a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categories</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li> <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register New User</a></li>
+                                    </ul>
+                                </li>*@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                     Dropdown
@@ -63,6 +66,9 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register New User</a>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Orders</a>
                             </li>
                         }
                         <li class="nav-item">
@@ -102,6 +108,8 @@
     <!-- include summernote js -->
     @*<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>*@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

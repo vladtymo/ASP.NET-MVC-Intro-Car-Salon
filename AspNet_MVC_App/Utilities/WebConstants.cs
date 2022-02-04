@@ -12,5 +12,7 @@ namespace AspNet_MVC_App
 
         public const string adminRole = "Admin";
         public const string userRole = "User";
+
+        public const string alertData = "AlertData";
     }
 }
